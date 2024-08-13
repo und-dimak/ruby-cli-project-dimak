@@ -25,7 +25,7 @@ You can find the tutorial [here](http://whatisthor.com/). It contains a Getting 
 
 Using Ruby and the Thor gem, create a command line application that:
 
-- recursively reads all of the images from the supplied directory of images
+- recursively reads all of the images from the supplied directory of images (available in this project as `gps_images.zip`)
 - extracts their EXIF GPS data (longitude and latitude)
 - and then writes the name of that image and any GPS co-ordinates it finds to a CSV file
 
