@@ -4,7 +4,7 @@ require 'exif'
 
 class CLI < Thor
   desc "scan", "Recursively reads all of the images from the supplied directory"
-  option :path, :type => :string, :required => false, :desc => "Optional parameter that allows any other directory to be passed in."
+  option :path, type: :string, required: false, desc: "Optional parameter that allows any other directory to be passed in."
 
   def scan
     report = File.open("report.csv", "w")
