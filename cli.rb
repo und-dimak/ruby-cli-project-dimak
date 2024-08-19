@@ -7,17 +7,17 @@ class CLI < Thor
   option :path, type: :string, required: false, desc: "Optional parameter that allows any other directory to be passed in."
 
   def scan
-    report = File.open("report.csv", "w")
+    File.open("report.csv", "w") do |report|
+      Dir.glob("**/*").each do |file|
+        next unless File.file?(file)
 
-    Dir.glob("**/*").each do |file|
-      next unless File.file?(file)
+        data = get_exif(file)
+        next unless data
 
-      data = get_exif(file)
-      next unless data
-
-      report.puts(:"File:#{file}")
-      report.puts(:"GPS data:#{data[:gps]}")
-      report.puts(:"--------------------------")
+        report.puts(:"File:#{file}")
+        report.puts(:"GPS data:#{data[:gps]}")
+        report.puts(:"--------------------------")
+      end
     end
   end
 
