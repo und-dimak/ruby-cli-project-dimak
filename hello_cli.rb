@@ -31,7 +31,6 @@ class HelloCLI < Thor
     puts "Goodbye World"
     puts "> done saying goodbye" if options[:verbose]
   end
-
 end
 
 HelloCLI.start(ARGV)

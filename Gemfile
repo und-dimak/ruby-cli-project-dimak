@@ -7,4 +7,3 @@ source "https://rubygems.org"
 gem "exif", "~> 2.2"
 
 gem "thor", "~> 1.3"
-
