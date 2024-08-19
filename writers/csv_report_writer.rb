@@ -1,5 +1,6 @@
-class CsvReportStorage
-  def save(data)
+require 'csv'
+class CsvReportWriter
+  def write(data)
     CSV.open("report.csv", "w") do |csv|
       csv << ["file name", "GPS data"] # headers
 
@@ -9,7 +10,7 @@ class CsvReportStorage
     end
   end
 
-  def self.save(data)
-    CsvReportStorage.new.save(data)
+  def self.write(data)
+    CsvReportWriter.new.write(data)
   end
 end

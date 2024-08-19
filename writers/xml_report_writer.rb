@@ -1,7 +1,7 @@
 require 'builder'
 
-class XmlReportStorage
-  def save(data)
+class XmlReportWriter
+  def write(data)
     File.open('report.xml', 'w') do |file|
       xml = Builder::XmlMarkup.new(target: file, indent: 2)
       xml.instruct! :xml, version: '1.0', encoding: 'UTF-8'
@@ -13,8 +13,7 @@ class XmlReportStorage
     end
   end
 
-  def self.save(data)
-    XmlReportStorage.new.save(data)
+  def self.write(data)
+    XmlReportWriter.new.write(data)
   end
-
 end
