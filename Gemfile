@@ -7,3 +7,7 @@ source "https://rubygems.org"
 gem "exif", "~> 2.2"
 
 gem "thor", "~> 1.3"
+
+gem "csv", "~> 3.3"
+
+gem "builder", "~> 3.3"
