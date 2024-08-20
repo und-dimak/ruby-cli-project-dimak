@@ -11,7 +11,7 @@ class CLI < Thor
   option :format, required: false, default: :csv, desc: "Optional parameter that allows setting specific file formats, either CSV or XML. The default is CSV."
 
   def scan
-    report = ExifScanner::gps(options[:path])
+    report = ExifScanner.gps(options[:path])
 
     case options[:format].to_sym
     when :xml
