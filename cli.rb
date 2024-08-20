@@ -15,9 +15,9 @@ class CLI < Thor
 
     case options[:format].to_sym
     when :xml
-      XmlReportWriter::write(report)
+      Writers::XmlReportWriter::write(report)
     else
-      CsvReportWriter::write(report)
+      Writers::CsvReportWriter::write(report)
     end
   end
 

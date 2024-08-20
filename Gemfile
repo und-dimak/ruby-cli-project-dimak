@@ -4,10 +4,10 @@ source "https://rubygems.org"
 
 # gem "rails"
 
-gem "exif", "~> 2.2"
+gem "exif"
 
-gem "thor", "~> 1.3"
+gem "thor"
 
-gem "csv", "~> 3.3"
+gem "csv"
 
-gem "builder", "~> 3.3"
+gem "builder"
