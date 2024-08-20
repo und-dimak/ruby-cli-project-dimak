@@ -1,33 +1,26 @@
 # frozen_string_literal: true
 require 'thor'
 require 'exif'
+require_relative 'writers/csv_report_writer'
+require_relative 'writers/xml_report_writer.rb'
+require_relative 'exif_scanner.rb'
 
 class CLI < Thor
   desc "scan", "Recursively reads all of the images from the supplied directory"
   option :path, type: :string, required: false, desc: "Optional parameter that allows any other directory to be passed in."
+  option :format, required: false, default: :csv, desc: "Optional parameter that allows setting specific file formats, either CSV or XML. The default is CSV."
 
   def scan
-    File.open("report.csv", "w") do |report|
-      Dir.glob("**/*").each do |file|
-        next unless File.file?(file)
+    report = ExifScanner.gps(options[:path])
 
-        data = get_exif(file)
-        next unless data
-
-        report.puts(:"File:#{file}")
-        report.puts(:"GPS data:#{data[:gps]}")
-        report.puts(:"--------------------------")
-      end
+    case options[:format].to_sym
+    when :xml
+      Writers::XmlReportWriter::write(report)
+    else
+      Writers::CsvReportWriter::write(report)
     end
   end
 
-  private
-
-  def get_exif(file)
-    Exif::Data.new(File.open(file))
-  rescue Exif::NotReadable
-    nil
-  end
 end
 
 CLI.start(ARGV)
